@@ -2,6 +2,11 @@
   require_once('objetos.php');
   require_once('funciones.php');
   session_start();
+   if(empty($_SESSION['sesionIniciada'])){
+    $_SESSION['sesionIniciada']=false;
+  } else {
+    $_SESSION['sesionIniciada'];
+  } 
  ?>
 
 <!DOCTYPE html>
@@ -54,11 +59,11 @@
 
         $_SESSION['usuario'] = new Users();
 
-        $consulta = "SELECT * from Usuario where Login='".$_POST['user_Name']."' and Password='".md5($_POST['user_Password'])."'";
+        $consulta = "SELECT * from usuario where Login='".$_POST['user_Name']."' and Password='".md5($_POST['user_Password'])."'";
 
         $respuesta = saveData($database,$consulta);
-
-        if($respuesta->num_rows==1){ 
+        
+        if($respuesta){ 
           
             $nombre = $respuesta->fetch_row();
             $_SESSION['usuario'] -> setUsers($nombre[0],$nombre[1],$nombre[2],$nombre[3],$nombre[4],$nombre[5],$nombre[6]);
@@ -90,8 +95,8 @@
                 <li><a href="registro.php">Editar Perfil</a></li>
                 <li><a href="nuevoPedido.php">Nuevo Pedido</a></li>
                 <li><a href="registro.php">Mis pedidos</a></li>
-                <li><a href="collapsible.html">Contacto</a></li>
-                <li><a href="registro.php">Cerrar Sesión</a></li>
+                <li><a href="contacto.php">Contacto</a></li>
+                <li><a href="cerrar.php">Cerrar Sesión</a></li>
             </ul>
             </div>
             <div class="nav-content lime accent-21">

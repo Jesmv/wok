@@ -2,6 +2,11 @@
   require_once('objetos.php');
   require_once('funciones.php');
   session_start();
+   if(empty($_SESSION['sesionIniciada'])){
+    $_SESSION['sesionIniciada']=false;
+  } else {
+    $_SESSION['sesionIniciada'];
+  } 
 ?>
 
 

@@ -2,6 +2,11 @@
 	require_once('objetos.php');
 	require_once('funciones.php');
 	session_start();
+  if(empty($_SESSION['sesionIniciada'])){
+    $_SESSION['sesionIniciada']=false;
+  } else {
+    $_SESSION['sesionIniciada'];
+  } 
  ?>
 
 <!DOCTYPE html>
@@ -33,7 +38,7 @@
             <li><a href="#modal1">Entrar</a></li>
             <li><a href="registro.php">Registrarse</a></li>
             <li><a href="nuevoPedido.php">Nuevo Pedido</a></li>
-            <li><a href="collapsible.html">Contacto</a></li>
+            <li><a href="contacto.php">Contacto</a></li>
         </ul>
         </div>
     </nav>
