@@ -17,6 +17,11 @@
   <!-- Compiled and minified JavaScript--> 
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+  <script>
+     $(document).ready(function() {
+        $('select').material_select();
+      });
+  </script>
 </head>
 <body>
 
@@ -53,45 +58,20 @@
       <p>Cada wok de Wok to Walk es único y no existen reglas para disfrutarlo. Mezclalo como quieras, pon los ingrecientes que más te gusten y a disfrutar.</p>
       <p>¿Has pensado ya qué masa elegir?</p>
     </div>
-    <div>
-      <form action="#" method="post">
+    <div class='row'>
+      <form action="#" method="post" class='col s4>
       <?php
         $result = saveData($dbconect, $consulta);
-        while($row = mysqli_fetch_array($result)){
-          echo $row['idBase'];
-          echo $row['descripcion'];
-          echo $row['precio'];
+        echo "<div class='input-field col s4'><select>";
+         while($row = $result->fetch_array()) {
+        
+         echo "<option value='".$row["idBase"]."'>".$row["descripcion"]."  ".$row["precio"]."</option>";
         }
+        echo "</select>
+        <label>Bases</label></div>";
       ?>
-        <p>
-          <input type="checkbox" id="hola" />
-          <label for="hola">Noodle</label>
-        </p>
-        <p>
-          <input type="checkbox" id="test6" />
-          <label for="test6">Arroz</label>
-        </p>
-        <p>
-          <input type="checkbox" id="test7" />
-          <label for="test7">Verduras</label>
-        </p>
-      </form>
-    </div>
-
-    <div>
-      <form action="#" method="post">
-        <p>
-          <input type="checkbox" id="test5" />
-          <label for="test5">Noodle</label>
-        </p>
-        <p>
-          <input type="checkbox" id="test6" />
-          <label for="test6">Arroz</label>
-        </p>
-        <p>
-          <input type="checkbox" id="test7" />
-          <label for="test7">Verduras</label>
-        </p>
+       
+      
       </form>
     </div>
 <?php 
