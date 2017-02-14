@@ -58,9 +58,9 @@
         <a href="#" class="brand-logo">WOK</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="home.php">Entrar</a></li>
-            <li><a href="sass.html">Registrarse</a></li>
-            <li><a href="badges.html">Nuevo Pedido</a></li>
-            <li><a href="collapsible.html">Contacto</a></li>
+            <li><a href="#">Registrarse</a></li>
+            <li><a href="nuevoPedido.php">Nuevo Pedido</a></li>
+            <li><a href="contacto.php">Contacto</a></li>
         </ul>
         </div>
     </nav>
