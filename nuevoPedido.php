@@ -1,12 +1,7 @@
 <?php
   require_once('objetos.php');
   require_once('funciones.php');
-  session_start();
-   if(empty($_SESSION['sesionIniciada'])){
-    $_SESSION['sesionIniciada']=false;
-  } else {
-    $_SESSION['sesionIniciada'];
-  } 
+  session_start(); 
 ?>
 
 
@@ -35,9 +30,9 @@
         <div class="nav-wrapper lime accent-21">
         <a href="#" class="brand-logo">WOK</a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="#">Home</a></li>
-            <li><a href="registro.php">Editar Perfil</a></li>
-            <li><a href="badges.html">Nuevo Pedido</a></li>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="editarPerfil.php">Editar Perfil</a></li>
+            <li><a href="#">Nuevo Pedido</a></li>
             <li><a href="misPedidos.php">Mis pedidos</a></li>
             <li><a href="contacto.php">Contacto</a></li>
             <li><a href="salir.php">Cerrar Sesión</a></li>

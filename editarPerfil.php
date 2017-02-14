@@ -16,45 +16,9 @@
   <!-- Compiled and minified JavaScript--> 
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-  <script>
-        $(document).ready(function(){
-          // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-          $('.modal').modal();
-        });
-  </script>
 </head>
 <body>
   <?php 
-      if (isset($_POST['send'])) { 
-
-        $database = conectarbd();
-
-        $_SESSION['usuario'] = new Users();
-
-        $consulta = "SELECT * from Usuario where Login='".$_POST['user_Name']."' and Password='".md5($_POST['user_Password'])."'";
-
-        $respuesta = saveData($database,$consulta);
-
-        if($respuesta->num_rows==1){ 
-          
-            $nombre = $respuesta->fetch_row();
-            $_SESSION['usuario'] -> setUsers($nombre[0],$nombre[1],$nombre[2],$nombre[3],$nombre[4],$nombre[5],$nombre[6]);
-            $_SESSION['sesionIniciada'] =true;
-          
-          } else {
-            if (isset($_SESSION['numErrores'])) {
-              $_SESSION['numErrores']++;
-            } else {
-              $_SESSION['numErrores'] = 0;
-            }
-            echo "<script>
-                alert('Usuario o contraseña incorrectos');
-              </script>";
-              
-          } 
-
-        closebd($database);
-      }
 
       if (isset($_SESSION['sesionIniciada'])) {
          
