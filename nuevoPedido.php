@@ -24,7 +24,9 @@
   if (isset($_SESSION['sesionIniciada'])) {
 
     $dbconect = conectarbd();
-           
+
+    $consulta = "SELECT * from bases";  
+    
 ?>
     <nav class="nav-extended lime accent-21">
         <div class="nav-wrapper lime accent-21">
@@ -53,6 +55,14 @@
     </div>
     <div>
       <form action="#" method="post">
+      <?php
+        $result = saveData($dbconect, $consulta);
+        while($row = mysqli_fetch_array($result)){
+          echo $row['idBase'];
+          echo $row['descripcion'];
+          echo $row['precio'];
+        }
+      ?>
         <p>
           <input type="checkbox" id="hola" />
           <label for="hola">Noodle</label>
