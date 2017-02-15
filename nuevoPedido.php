@@ -30,7 +30,8 @@
 
     $dbconect = conectarbd();
 
-    $consulta = "SELECT * from bases";  
+    $consultaBases = "SELECT * from bases";
+    $consultaIngredientes = "SELECT * from ingredientes";  
     
 ?>
     <nav class="nav-extended lime accent-21">
@@ -56,21 +57,32 @@
     <div>
       <h1>1º Elige tu base preferida</h1>
       <p>Cada wok de Wok to Walk es único y no existen reglas para disfrutarlo. Mezclalo como quieras, pon los ingrecientes que más te gusten y a disfrutar.</p>
-      <p>¿Has pensado ya qué masa elegir?</p>
+      <p>¿Has pensado ya qué base elegir?</p>
     </div>
-    <div class='row'>
-      <form action="#" method="post" class='col s4>
+    <div>
+      <form action="misPedidos.php" method="post" class='offset-s4 col s4'>
       <?php
-        $result = saveData($dbconect, $consulta);
-        echo "<div class='input-field col s4'><select>";
-         while($row = $result->fetch_array()) {
+        $resultBases = saveData($dbconect, $consultaBases);
+        echo "<div class='row'><div class='input-field'><select class='col offset-s4 s4'>";
+         while($rowBases = $resultBases->fetch_array()) {
         
-         echo "<option value='".$row["idBase"]."'>".$row["descripcion"]."  ".$row["precio"]."</option>";
+         echo "<option value='".$rowBases["idBase"]."'>".$rowBases["descripcion"]."  ".$rowBases["precio"]."</option>";
         }
-        echo "</select>
-        <label>Bases</label></div>";
+        echo "</select>";
+
+         $resultIngredientes = saveData($dbconect, $consultaIngredientes);
+        echo "<div class='row'><p class='col offset-s4 s4'>";
+    
+         while($rowIng = $resultIngredientes->fetch_array()) {
+        
+         echo "<input type='checkbox' id='".$rowIng["nombreIng"]."' name='".$rowIng["nombreIng"]."'/>";
+         echo "<label for='".$rowIng["nombreIng"]."'>".$rowIng["nombreIng"]." ".$rowIng["descripcion"]."</label><br>";
+        }
+        echo "</p></div>";
+
+        
       ?>
-       
+       <input type="submit" name="sendPedido" value="Enviar pedido">
       
       </form>
     </div>
