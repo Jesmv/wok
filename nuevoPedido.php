@@ -63,7 +63,7 @@
       <form action="misPedidos.php" method="post" class='offset-s4 col s4'>
       <?php
         $resultBases = saveData($dbconect, $consultaBases);
-        echo "<div class='row'><div class='input-field'><select class='col offset-s4 s4'>";
+        echo "<div class='row'><div class='input-field'><select name='bases' class='col offset-s4 s4'>";
          while($rowBases = $resultBases->fetch_array()) {
         
          echo "<option value='".$rowBases["idBase"]."'>".$rowBases["descripcion"]."  ".$rowBases["precio"]."</option>";
@@ -75,7 +75,7 @@
     
          while($rowIng = $resultIngredientes->fetch_array()) {
         
-         echo "<input type='checkbox' id='".$rowIng["nombreIng"]."' name='".$rowIng["nombreIng"]."'/>";
+         echo "<input type='checkbox' id='".$rowIng["nombreIng"]."' name='ingredientes[]' value='".$rowIng["nombreIng"]."'/>";
          echo "<label for='".$rowIng["nombreIng"]."'>".$rowIng["nombreIng"]." ".$rowIng["descripcion"]."</label><br>";
         }
         echo "</p></div>";
