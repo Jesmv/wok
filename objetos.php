@@ -76,4 +76,68 @@
 
 
 	}
+
+	/*class BasesWok() {
+		private $idBase;
+		private $descripción;
+		private $precio;
+
+		function setBasesWok($idBase, $descripción, $precio) {
+			$this -> idBase = $idBase;
+			$this -> descripción = $descripción;
+			$this -> precio = $precio;
+		}
+
+		function setIdBase($idBase) {
+			$this -> idBase = $idBase;
+		}
+
+		function getIdBase() {
+			return $this -> $idBase;
+		}
+
+		function setDescripción($descripción) {
+			$this -> descripción = $descripción;
+		}
+
+		function getDescripción() {
+			return $this -> $descripción;
+		}
+
+		function setPrecio($precio) {
+			$this -> precio = $precio;
+		}
+
+		function getPrecio() {
+			return $this -> $precio;
+		}
+
+	}
+
+	class Ingredientes() {
+		private $nombreIng;
+		private $descripcionIng;
+
+		function setIngredientes ($nombreIng, $descripcionIng) {
+			$this -> nombreIng = $nombreIng;
+			$this -> descripcionIng = $descripcionIng
+		}
+
+		function setNombreIng($nombreIng) {
+			$this -> nombreIng = $nombreIng;
+		}
+
+		function getNombreIng() {
+			return $this -> $nombreIng;
+		}
+
+		function setDescripcionIng($descripcionIng) {
+			$this -> descripcionIng = $descripcionIng;
+		}
+
+		function getDescripcionIng() {
+			return $this -> $descripcionIng;
+		}
+	}*/
+
  ?>

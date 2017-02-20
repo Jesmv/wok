@@ -2,6 +2,12 @@
   require_once('objetos.php');
   require_once('funciones.php');
   session_start(); 
+
+  if (isset($_SESSION['sesionIniciada'])) {
+    $_SESSION['sesionIniciada'];
+  } else {
+    $_SESSION['sesionIniciada'] = false;
+  }
 ?>
 
 
@@ -26,7 +32,7 @@
 <body>
 
 <?php
-  if (isset($_SESSION['sesionIniciada'])) {
+  if ($_SESSION['sesionIniciada']) {
 
     $dbconect = conectarbd();
 
@@ -47,7 +53,7 @@
         </ul>
         </div>
         <div class="nav-content lime accent-21">
-          Bienvenid@ <?php echo $_SESSION['usuario']->getName(); ?>
+          Bienvenid@ <?php echo $_SESSION['usuario']->getName(); ?> &nbsp;&nbsp; <?php echo date("d/m/o \a \l\a\s H:i:s"); ?>
         </div>
     </nav>
     
@@ -97,5 +103,6 @@
   }
       
 ?>
+  
 </body>
 </html>

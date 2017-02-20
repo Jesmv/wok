@@ -16,16 +16,26 @@
   <!-- Compiled and minified JavaScript--> 
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="estilo.css">
   <script>
      $(document).ready(function() {
         $('select').material_select();
       });
   </script>
+  <style>
+      .verde {
+        color:"green";
+      }
+
+      .rojo {
+        color:"red";
+      }
+  </style>
 </head>
 <body>
 
 <?php
-  if (isset($_SESSION['sesionIniciada'])) {
+  if ($_SESSION['sesionIniciada']) {
        
     
   
@@ -37,32 +47,74 @@
         <ul class="right hide-on-med-and-down">
             <li><a href="home.php">Home</a></li>
             <li><a href="editarPerfil.php">Editar Perfil</a></li>
-            <li><a href="#">Nuevo Pedido</a></li>
+            <li><a href="nuevoPedido.php">Nuevo Pedido</a></li>
             <li><a href="misPedidos.php">Mis pedidos</a></li>
             <li><a href="contacto.php">Contacto</a></li>
             <li><a href="salir.php">Cerrar Sesión</a></li>
         </ul>
         </div>
         <div class="nav-content lime accent-21">
-          Bienvenid@ <?php echo $_SESSION['usuario']->getName(); ?>
+          Bienvenid@ <?php echo $_SESSION['usuario']->getName(); ?> &nbsp;&nbsp; <?php echo date("d/m/o \a \l\a\s H:i:s"); ?>
         </div>
     </nav>
     <?php
 
-         if(isset($_POST['sendPedido'])) {
-            $base = $_POST['bases'];
-            $resultado = "";
-            foreach ($_POST['ingredientes'] as $extra)
-                $resultado = $resultado."$extra ";
+        if(isset($_POST['sendPedido'])) {
+            if(guardarPedido()) {
+                echo "<script>alert('Pedido enviado correctamente.');</script>";
+            } else {
+                echo "<script>alert('Algo ha ido mal, por favor, repite tu pedido.');</script>";
+                header ("Location: nuevoPedido.php");
+            }
+  
         }
-
-            print_r("$resultado");
-        $dbconect = conectarbd();
-
-        $consultaBases = "SELECT * from bases";
-        $consultaIngredientes = "SELECT * from ingredientes"; 
-        }
+        $result = misPedidos();
+        
     ?>
+    <main class="row">
+    <h3 class="col offset-s5 s7">Mis pedidos</h3>
+    <table>
+        <tr>
+            <th>Nº Pedido</th>
+            <th>Usuario</th>
+            <th>Base</th>
+            <th>Ingredientes</th>
+            <th>Fecha</th>
+            <th>Servido</th>
+            <th>Total</th>
+        </tr>
+
+    <?php
+        while($row = $result->fetch_array()) {
+            if($row[6]==1){  
+                echo "<tr class='teal accent-1'>";
+                echo "<td>",$row[0],"</td>";
+                echo "<td>",$row[1],"</td>";
+                echo "<td>",$row[8],"</td>";
+                echo "<td>",$row[4],"</td>";
+                echo "<td>",$row[5],"</td>";
+                echo "<td>Servido</td>";
+                echo "<td>",$row[7]+3,"€</td>";
+                echo "</tr>";
+            } else {
+                echo "<tr class='red lighten-4'>";
+                echo "<td>",$row[0],"</td>";
+                echo "<td>",$row[1],"</td>";
+                echo "<td>",$row[8],"</td>";
+                echo "<td>",$row[4],"</td>";
+                echo "<td>",$row[5],"</td>";
+                echo "<td>En curso</td>";
+                echo "<td>",$row[7]+3,"€</td>";
+                echo "</tr>";
+            }
+            
+            
+        }
+        echo "</table>";
+        
+    
+    ?>
+    </main>
      <footer class="page-footer lime accent-21">
         <div class="container">
         <div class="row">
@@ -90,5 +142,13 @@
         </div>
         </div>
     </footer>
+
+    <?php
+
+    } else {
+        header ("Location: home.php");
+    } 
+    
+     ?>
 </body>
 </html>
